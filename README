@@ -1,0 +1,33 @@
+# Calculadora de áreas, perímetros y volúmenes
+
+Evidencia **GA1-240201528-AA4-EV01** · Algoritmo para el cálculo de áreas y volúmenes · SENA
+
+Aplicación web hecha con HTML, CSS y JavaScript que calcula:
+
+- **Figuras planas** (área y perímetro): cuadrado, rectángulo, triángulo, círculo, trapecio, rombo y polígono regular.
+- **Sólidos regulares** (volumen): cubo, prisma rectangular, cilindro, cono, esfera y pirámide de base cuadrada.
+- **Sólido irregular** (volumen): método de desplazamiento de agua (Arquímedes).
+
+Cada resultado muestra la fórmula y la sustitución de valores, para ver el procedimiento.
+
+## Cómo usarla
+
+1. Abre `index.html` en el navegador (no necesita instalación).
+2. Elige una categoría y una figura.
+3. Escribe las medidas y pulsa **Calcular**.
+
+## Archivos
+
+| Archivo | Función |
+|---|---|
+| `index.html` | Estructura de la página |
+| `style.css` | Estilos y diseño responsive |
+| `script.js` | Fórmulas, validaciones y lógica del algoritmo |
+
+## Validaciones
+
+- Campos vacíos o con texto que no es un número.
+- Valores en cero o negativos.
+- Triángulos imposibles (desigualdad triangular).
+- Número de lados del polígono: entero entre 3 y 100.
+- Sólido irregular: el volumen final debe ser mayor que el inicial.
