@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de áreas, perímetros y volúmenes</title>
+  <meta name="description" content="Algoritmo para calcular el área y el perímetro de figuras planas y el volumen de sólidos regulares, con el procedimiento paso a paso.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <div class="cabecera-contenido">
+      <h1>Áreas, perímetros y volúmenes</h1>
+      <p>Elige una figura, escribe las medidas y revisa el cálculo paso a paso.</p>
+    </div>
+  </header>
+
+  <main class="taller">
+
+    <nav class="categorias" id="categorias" aria-label="Tipo de cálculo"></nav>
+
+    <section class="panel panel-figuras" aria-labelledby="titulo-figuras">
+      <h2 id="titulo-figuras">Figura</h2>
+      <div class="figuras" id="lista-figuras"></div>
+    </section>
+
+    <section class="panel panel-datos" aria-labelledby="titulo-datos">
+      <h2 id="titulo-datos">Medidas</h2>
+
+      <form id="formulario" novalidate>
+        <div class="campo" id="bloque-unidad">
+          <label for="unidad">Unidad de medida</label>
+          <select id="unidad" name="unidad">
+            <option value="mm">milímetros (mm)</option>
+            <option value="cm" selected>centímetros (cm)</option>
+            <option value="m">metros (m)</option>
+            <option value="in">pulgadas (in)</option>
+            <option value="ft">pies (ft)</option>
+          </select>
+        </div>
+
+        <div id="campos"></div>
+
+        <p class="nota" id="nota" hidden></p>
+        <p class="error" id="error" role="alert" hidden></p>
+
+        <div class="acciones">
+          <button type="submit" class="btn btn-principal">Calcular</button>
+          <button type="reset" class="btn btn-secundario">Limpiar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel panel-resultado" aria-labelledby="titulo-resultado">
+      <h2 id="titulo-resultado">Resultado</h2>
+      <div id="resultado" aria-live="polite">
+        <p class="vacio">Escribe las medidas y pulsa Calcular para ver el resultado y su procedimiento.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>Evidencia GA1-240201528-AA4-EV01 · Algoritmo para el cálculo de áreas y volúmenes · SENA</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

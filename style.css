@@ -1,0 +1,399 @@
+/* ==========================================================
+   Calculadora de áreas, perímetros y volúmenes
+   Estética de taller industrial: concreto, acero y óxido
+   ========================================================== */
+
+:root {
+  --concreto: #cfcdc6;
+  --papel: #ecebe6;
+  --acero: #30363b;
+  --aluminio: #8a9096;
+  --linea: #b4b2ab;
+  --oxido: #a8432b;
+  --oxido-oscuro: #8a3320;
+  --error: #8f1f1f;
+
+  --fuente-titulo: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --fuente-texto: "Work Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--concreto);
+  color: var(--acero);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+}
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+  background: var(--acero);
+  color: var(--papel);
+  border-bottom: 10px solid var(--oxido);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 14px,
+    rgba(255, 255, 255, 0.035) 14px 28px
+  );
+}
+
+.cabecera-contenido {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 2rem;
+}
+
+.cabecera h1 {
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  letter-spacing: 0.01em;
+}
+
+.cabecera p {
+  margin: 0.75rem 0 0;
+  max-width: 52ch;
+  color: #d6d4cd;
+}
+
+/* ---------- Distribución ---------- */
+
+.taller {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-areas:
+    "categorias categorias categorias"
+    "figuras    datos      resultado";
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.categorias {
+  grid-area: categorias;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.panel-figuras { grid-area: figuras; }
+.panel-datos { grid-area: datos; }
+.panel-resultado { grid-area: resultado; }
+
+.panel {
+  background: var(--papel);
+  border: 2px solid var(--acero);
+  padding: 1.25rem;
+}
+
+.panel h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Categorías ---------- */
+
+.categoria {
+  font: inherit;
+  font-weight: 600;
+  background: transparent;
+  color: var(--acero);
+  border: 2px solid var(--acero);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.categoria small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.categoria:hover {
+  background: rgba(48, 54, 59, 0.1);
+}
+
+.categoria[aria-pressed="true"] {
+  background: var(--acero);
+  color: var(--papel);
+}
+
+/* ---------- Lista de figuras ---------- */
+
+.figuras {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.figura {
+  font: inherit;
+  background: transparent;
+  color: var(--acero);
+  border: 0;
+  border-left: 6px solid var(--linea);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.figura:hover {
+  background: rgba(48, 54, 59, 0.08);
+  border-left-color: var(--aluminio);
+}
+
+.figura[aria-pressed="true"] {
+  font-weight: 600;
+  background: var(--concreto);
+  border-left-color: var(--oxido);
+}
+
+/* ---------- Formulario ---------- */
+
+.campo {
+  margin-bottom: 1rem;
+}
+
+.campo label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  font: inherit;
+  color: var(--acero);
+  background: #fff;
+  border: 2px solid var(--acero);
+  border-radius: 0;
+  padding: 0.6rem 0.75rem;
+}
+
+.campo input[aria-invalid="true"] {
+  border-color: var(--error);
+  background: #fbefee;
+}
+
+.nota {
+  margin: 0 0 1rem;
+  padding-left: 0.75rem;
+  border-left: 4px solid var(--aluminio);
+  font-size: 0.92rem;
+}
+
+.error {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.75rem;
+  background: #f6dcda;
+  border-left: 6px solid var(--error);
+  color: var(--error);
+  font-weight: 500;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid var(--acero);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-principal {
+  background: var(--oxido);
+  border-color: var(--oxido);
+  color: #fff;
+}
+
+.btn-principal:hover {
+  background: var(--oxido-oscuro);
+  border-color: var(--oxido-oscuro);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--acero);
+}
+
+.btn-secundario:hover {
+  background: rgba(48, 54, 59, 0.1);
+}
+
+/* ---------- Resultado ---------- */
+
+.vacio {
+  margin: 0;
+  color: #4d555b;
+}
+
+.medida {
+  background: var(--acero);
+  color: var(--papel);
+  padding: 1.1rem 1.25rem 1.25rem;
+  margin-bottom: 1rem;
+  /* esquinas cortadas, como una placa metálica */
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.medida:last-child {
+  margin-bottom: 0;
+}
+
+.medida h3 {
+  font-size: 1.3rem;
+  color: #e5c3b8;
+}
+
+.medida .valor {
+  margin: 0.4rem 0 0.8rem;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.medida .numero {
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  overflow-wrap: anywhere;
+}
+
+.medida .unidad-resultado {
+  font-size: 1.5rem;
+  color: #e5c3b8;
+}
+
+.medida .formula,
+.medida .sustitucion {
+  margin: 0;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+.medida .formula {
+  color: #cfcdc6;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(236, 235, 230, 0.25);
+  margin-bottom: 0.4rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .medida {
+    animation: entrada 0.25s ease-out;
+  }
+
+  @keyframes entrada {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* ---------- Pie ---------- */
+
+.pie {
+  background: var(--acero);
+  color: #d6d4cd;
+  text-align: center;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* ---------- Accesibilidad ---------- */
+
+:focus-visible {
+  outline: 3px solid var(--oxido);
+  outline-offset: 2px;
+}
+
+.cabecera :focus-visible,
+.medida :focus-visible {
+  outline-color: #fff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+  .taller {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "categorias categorias"
+      "figuras    figuras"
+      "datos      resultado";
+  }
+
+  .figuras {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .figura {
+    border-left: 0;
+    border-bottom: 4px solid var(--linea);
+  }
+
+  .figura[aria-pressed="true"] {
+    border-bottom-color: var(--oxido);
+  }
+}
+
+@media (max-width: 680px) {
+  .taller {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "categorias"
+      "figuras"
+      "datos"
+      "resultado";
+  }
+
+  .categoria {
+    flex: 1 1 100%;
+  }
+}
